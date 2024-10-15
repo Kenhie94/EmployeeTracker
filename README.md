@@ -6,6 +6,9 @@
 ## Description
 An app to track your employees current position and salary with an easy to navigate UI
 
+## Demo Video
+https://youtu.be/lgIkf8ggYC4
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
