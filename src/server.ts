@@ -11,14 +11,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// pool.query('SELECT role.title, role.salary, department.name AS department FROM role JOIN department ON role.department_id = department.id;', (err: Error, result: QueryResult) => {
-//   if (err) {
-//     console.log(err);
-//   } else if (result) {
-//     console.log(result.rows);
-//   }
-// });
-
+// Starts the program
 function startInquirer() {
   inquirer
     .prompt([
@@ -60,6 +53,7 @@ function startInquirer() {
     });
 }
 
+// Function to view all employees
 async function viewAllEmployees(): Promise<void> {
   const query = `
     SELECT 
@@ -86,6 +80,7 @@ async function viewAllEmployees(): Promise<void> {
   }
 }
 
+// Function to add new employees
 async function addEmployee(): Promise<void> {
   try {
     const roleQuery: QueryResult = await pool.query("SELECT id, title FROM role");
@@ -140,6 +135,7 @@ async function addEmployee(): Promise<void> {
   }
 }
 
+// Function to update employees roles
 async function updateEmployeeRole(): Promise<void> {
   try {
     const employeeQuery: QueryResult = await pool.query("SELECT id, first_name, last_name FROM employee");
@@ -179,6 +175,7 @@ async function updateEmployeeRole(): Promise<void> {
   }
 }
 
+// Function to view all roles
 async function viewAllRoles(): Promise<void> {
   try {
     const result: QueryResult = await pool.query("SELECT role.id, role.title, role.salary, department.name AS department FROM role JOIN department ON role.department_id = department.id");
@@ -190,6 +187,7 @@ async function viewAllRoles(): Promise<void> {
   }
 }
 
+// Function to add new roles
 async function addRole(): Promise<void> {
   try {
     const departmentQuery: QueryResult = await pool.query("SELECT id, name FROM department");
@@ -232,6 +230,7 @@ async function addRole(): Promise<void> {
   }
 }
 
+// Function to view all departments
 async function viewAllDepartments(): Promise<void> {
   try {
     const result: QueryResult = await pool.query(`SELECT * FROM department`);
@@ -242,6 +241,7 @@ async function viewAllDepartments(): Promise<void> {
   }
 }
 
+// Function to add new department
 async function addDepartment(): Promise<void> {
   try {
     const answers = await inquirer.prompt([
